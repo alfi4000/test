@@ -12,11 +12,15 @@ def deactivate_bluetooth_adapter_hci1():
 
 def spam_bluetooth_frequency(frequency):
     """Spams the given Bluetooth frequency for 15 seconds."""
+    # Create a Bluetooth socket
     socket = bluetooth.socket(bluetooth.RFCOMM)
+    # Connect to the frequency
     socket.connect((frequency, 1))
+    # Send spam messages for 15 seconds
     for i in range(15):
         socket.send('Spam!')
         time.sleep(1)
+    # Close the socket
     socket.close()
 
 def main():
