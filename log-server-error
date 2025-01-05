@@ -1,0 +1,39 @@
+node:internal/process/promises:389
+      new UnhandledPromiseRejection(reason);
+      ^
+
+UnhandledPromiseRejection: This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). The promise rejected with the reason "#<NotEnoughScopes>".
+    at throwUnhandledRejectionsMode (node:internal/process/promises:389:7)
+    at processPromiseRejections (node:internal/process/promises:470:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:96:32) {
+  code: 'ERR_UNHANDLED_REJECTION'
+}
+
+Node.js v20.17.0
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:13178:13
+    at async /app/dist/apps/frontend/.next/server/app/(site)/integrations/social/[provider]/continue/page.js:3:27731
+    at async it (/app/dist/apps/frontend/.next/server/app/(site)/integrations/social/[provider]/continue/page.js:3:26753) {
+  digest: '353303767',
+  [cause]: SocketError: other side closed
+      at Socket.<anonymous> (node:internal/deps/undici/undici:6020:28)
+      at Socket.emit (node:events:531:35)
+      at endReadableNT (node:internal/streams/readable:1696:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+    code: 'UND_ERR_SOCKET',
+    socket: {
+      localAddress: '::1',
+      localPort: 35382,
+      remoteAddress: '::1',
+      remotePort: 3000,
+      remoteFamily: 'IPv6',
+      timeout: undefined,
+      bytesWritten: 1841,
+      bytesRead: 0
+    }
+  }
+}
+2025-01-05 13:38:47,816 WARN exited: backend (exit status 1; not expected)
+{"level":"error","ts":1736084333.126391,"logger":"http.log.error","msg":"dial tcp [::1]:3000: connect: connection refused","request":{"remote_ip":"172.21.0.1","remote_port":"34164","client_ip":"172.21.0.1","proto":"HTTP/1.1","method":"GET","host":"paparazzodrone.my.id","uri":"/api/user/self","headers":{"Accept-Encoding":["gzip, deflate, br"],"Cookie":[],"Accept":["application/json"],"Content-Type":["application/json"],"Cache-Control":["no-cache"],"X-Forwarded-Proto":["https"],"Pragma":["no-cache"],"Sec-Fetch-Mode":["cors"],"Sec-Fetch-Dest":["empty"],"Priority":["u=3, i"],"X-Forwarded-Scheme":["https"],"X-Forwarded-For":["107.119.57.32"],"Sec-Fetch-Site":["same-origin"],"Referer":["https://paparazzodrone.my.id/integrations/social/facebook?code=AQBg5SvIfoSAPxXCffKdtpgyQvt2qkvO_W7ao1XQudkG2sW0VyiOedwvKR2Cg-AnCIlPfllWf72o6TUMMfQh4Bm_jyWD4Yme-Xva3zc5RwtIOdYObZP7I8An_57Zg7Assmu0JWyHx4dJMr2XxSaNrd-iiKgjdlwxkggaNbTSByJItNKhvIx2zTmBMlbgVoyP0Cmrq7cKJvtZoHyQ0E-hCC1HiVc5zpD3JyCO7r6wLRjdiCYrbQ5TPttKlM0RGKk17pI8sPy8DU9ihdUOZ0nZpuCOkWAQTqO_PgOWw1-cEm0IjQ4PfUxd14eYfkc2fz8cvBNZgpDwt43E6ZdZzsfZ6KpYogMRfQ_XZPg6SUERbqoOgsb6bQ55Fxaat8m3pO8jcEG8CjidG_BVUOys2B-xP6P_&state=yTxedh"],"X-Real-Ip":["107.119.57.32"],"User-Agent":["Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"],"Accept-Language":["en-US,en;q=0.9"]}},"duration":0.001369395,"status":502,"err_id":"fa4gh0iw4","err_trace":"reverseproxy.statusError (reverseproxy.go:1267)"}
+{"level":"error","ts":1736084338.2916408,"logger":"http.log.error","msg":"dial tcp [::1]:3000: connect: connection refused","request":{"remote_ip":"172.21.0.1","remote_port":"48134","client_ip":"172.21.0.1","proto":"HTTP/1.1","method":"GET","host":"paparazzodrone.my.id","uri":"/api/user/self","headers":{"X-Forwarded-Proto":["https"],"Accept-Language":["en-US,en;q=0.9"],"Accept-Encoding":["gzip, deflate, br"],"X-Forwarded-For":["107.119.57.32"],"Accept":["application/json"],"Referer":["https://paparazzodrone.my.id/integrations/social/facebook?code=AQBg5SvIfoSAPxXCffKdtpgyQvt2qkvO_W7ao1XQudkG2sW0VyiOedwvKR2Cg-AnCIlPfllWf72o6TUMMfQh4Bm_jyWD4Yme-Xva3zc5RwtIOdYObZP7I8An_57Zg7Assmu0JWyHx4dJMr2XxSaNrd-iiKgjdlwxkggaNbTSByJItNKhvIx2zTmBMlbgVoyP0Cmrq7cKJvtZoHyQ0E-hCC1HiVc5zpD3JyCO7r6wLRjdiCYrbQ5TPttKlM0RGKk17pI8sPy8DU9ihdUOZ0nZpuCOkWAQTqO_PgOWw1-cEm0IjQ4PfUxd14eYfkc2fz8cvBNZgpDwt43E6ZdZzsfZ6KpYogMRfQ_XZPg6SUERbqoOgsb6bQ55Fxaat8m3pO8jcEG8CjidG_BVUOys2B-xP6P_&state=yTxedh"],"X-Forwarded-Scheme":["https"],"Content-Type":["application/json"],"Sec-Fetch-Site":["same-origin"],"Sec-Fetch-Mode":["cors"],"User-Agent":["Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"],"Sec-Fetch-Dest":["empty"],"Priority":["u=3, i"],"Cookie":[],"X-Real-Ip":["107.119.57.32"],"Pragma":["no-cache"],"Cache-Control":["no-cache"]}},"duration":0.001259166,"status":502,"err_id":"2w1iettqm","err_trace":"reverseproxy.statusError (reverseproxy.go:1267)"}
+{"level":"error","ts":1736084339.1902149,"logger":"http.log.error","msg":"dial tcp [::1]:3000: connect: connection refused","request":{"remote_ip":"172.21.0.1","remote_port":"48162","client_ip":"172.21.0.1","proto":"HTTP/1.1","method":"GET","host":"paparazzodrone.my.id","uri":"/api/user/self","headers":{"Sec-Fetch-Mode":["cors"],"Accept-Language":["en-US,en;q=0.9"],"Accept":["application/json"],"Sec-Fetch-Site":["same-origin"],"Priority":["u=3, i"],"Pragma":["no-cache"],"Referer":["https://paparazzodrone.my.id/integrations/social/facebook?code=AQBg5SvIfoSAPxXCffKdtpgyQvt2qkvO_W7ao1XQudkG2sW0VyiOedwvKR2Cg-AnCIlPfllWf72o6TUMMfQh4Bm_jyWD4Yme-Xva3zc5RwtIOdYObZP7I8An_57Zg7Assmu0JWyHx4dJMr2XxSaNrd-iiKgjdlwxkggaNbTSByJItNKhvIx2zTmBMlbgVoyP0Cmrq7cKJvtZoHyQ0E-hCC1HiVc5zpD3JyCO7r6wLRjdiCYrbQ5TPttKlM0RGKk17pI8sPy8DU9ihdUOZ0nZpuCOkWAQTqO_PgOWw1-cEm0IjQ4PfUxd14eYfkc2fz8cvBNZgpDwt43E6ZdZzsfZ6KpYogMRfQ_XZPg6SUERbqoOgsb6bQ55Fxaat8m3pO8jcEG8CjidG_BVUOys2B-xP6P_&state=yTxedh"],"Sec-Fetch-Dest":["empty"],"Cache-Control":["no-cache"],"X-Forwarded-Proto":["https"],"X-Forwarded-For":["107.119.57.32"],"X-Real-Ip":["107.119.57.32"],"Content-Type":["application/json"],"Accept-Encoding":["gzip, deflate, br"],"X-Forwarded-Scheme":["https"],"User-Agent":["Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Mobile/15E148 Safari/604.1"],"Cookie":[]}},"duration":0.001124243,"status":502,"err_id":"0xpvrzg28","err_trace":"reverseproxy.statusError (reverseproxy.go:1267)"}
